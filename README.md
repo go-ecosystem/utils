@@ -23,6 +23,9 @@ go get github.com/go-ecosystem/utils
   - BytesToString
   - JSONToMap
   - MapToJSON
+- crypto
+  - EncryptPwd
+  - ComparePwd
 - file
   - Exists
   - Exist
