@@ -1,6 +1,10 @@
 package strings
 
-import "unicode"
+import (
+	"crypto/rand"
+	"encoding/hex"
+	"unicode"
+)
 
 // Capitalize make first letter to upper
 // Source https://www.cnblogs.com/Detector/p/9686443.html
@@ -51,4 +55,13 @@ func SplitToChunks(s string, chunkSize int) []string {
 		chunks = append(chunks, string(runes[i:nn]))
 	}
 	return chunks
+}
+
+// Rand generate rand string with bytes size
+func Rand(size int) (string, error) {
+	bytes := make([]byte, size)
+	if _, err := rand.Read(bytes); err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(bytes), nil
 }

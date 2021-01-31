@@ -17,6 +17,7 @@ go get github.com/go-ecosystem/utils
 
 - array
   - ContainString
+  - HasDuplicateItem
 - convert
   - StringToBytes
   - BytesToString
@@ -57,6 +58,7 @@ go get github.com/go-ecosystem/utils
   - Capitalize
   - IsCapitalize
   - SplitToChunks
+  - Rand
 - version
   - Stringify
   - StringifyWithOps

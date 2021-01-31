@@ -3,6 +3,8 @@ package strings
 import (
 	"reflect"
 	"testing"
+
+	"github.com/go-ecosystem/utils/array"
 )
 
 func TestCapitalize(t *testing.T) {
@@ -97,5 +99,28 @@ func TestSplitToChunks(t *testing.T) {
 				t.Errorf("SplitToChunks() = %v, want %v", got, tt.want)
 			}
 		})
+	}
+}
+
+func TestRand(t *testing.T) {
+	// Size
+	got, err := Rand(5)
+	if err != nil {
+		t.Error("Rand error")
+	}
+	if len(got) != 5*2 {
+		t.Error("Rand error")
+	}
+
+	// Rand
+	var values []string
+
+	for i := 0; i < 100000; i++ {
+		v, _ := Rand(5)
+		values = append(values, v)
+	}
+
+	if array.HasDuplicateItem(values) {
+		t.Errorf("Rand() error %v", values)
 	}
 }

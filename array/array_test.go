@@ -58,3 +58,57 @@ func TestContainString(t *testing.T) {
 		})
 	}
 }
+
+func TestHasDuplicateItem(t *testing.T) {
+	type args struct {
+		array []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "",
+			args: args{
+				array: []string{
+					"",
+					"",
+				},
+			},
+			want: true,
+		},
+		{
+			name: "",
+			args: args{
+				array: []string{
+					"123",
+					"",
+					"ss",
+					"123",
+				},
+			},
+			want: true,
+		},
+		{
+			name: "",
+			args: args{
+				array: []string{
+					"13",
+					"",
+					"ss",
+					"123",
+					"123asdasdqd",
+				},
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := HasDuplicateItem(tt.args.array); got != tt.want {
+				t.Errorf("HasDuplicateItem() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
