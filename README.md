@@ -40,8 +40,11 @@ go get github.com/go-ecosystem/utils
 - flag
   - IsTesting
 - log
-  - L
-  - LW
+  - E
+  - W
+  - H
+  - I
+  - V
 - net
   - GetIP
 - os
