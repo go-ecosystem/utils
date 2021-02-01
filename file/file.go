@@ -2,7 +2,6 @@ package file
 
 import (
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -66,8 +65,6 @@ func GetDirListWithFilter(path string, filter Filter) ([]string, error) {
 	var dirList []string
 
 	paths, err := filepath.Glob(filepath.Join(path, "*"))
-
-	log.Printf("paths: %v", paths)
 
 	for _, value := range paths {
 		f, err := os.Stat(value)
