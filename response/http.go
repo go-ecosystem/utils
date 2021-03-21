@@ -24,7 +24,7 @@ type APIModel struct {
 // NewAPIModel new api response
 func NewAPIModel(code Code, message string, data interface{}) *APIModel {
 	if data == nil {
-		data = EmptyMapData
+		data = EmptyMapData()
 	}
 	res := &APIModel{
 		Code:    code,
@@ -34,11 +34,16 @@ func NewAPIModel(code Code, message string, data interface{}) *APIModel {
 	return res
 }
 
-// EmptyMapData EmptyMapData
-var EmptyMapData = make(map[string]interface{})
+// Empty Data
+var (
+	EmptyMapData = func() map[string]interface{} {
+		return make(map[string]interface{})
+	}
 
-// EmptyArrayData EmptyArrayData
-var EmptyArrayData = make([]interface{}, 0)
+	EmptyArrayData = func() []interface{} {
+		return make([]interface{}, 0)
+	}
+)
 
 // JSON response APIModel
 func JSON(c *gin.Context, code Code, message string, data interface{}) {
@@ -53,7 +58,7 @@ func OK(c *gin.Context, message string, data interface{}) {
 
 // Err response error
 func Err(c *gin.Context, err Error) {
-	res := NewAPIModel(err.Code, err.Error(), EmptyMapData)
+	res := NewAPIModel(err.Code, err.Error(), EmptyMapData())
 	c.JSON(http.StatusOK, res)
 }
 

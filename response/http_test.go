@@ -28,7 +28,7 @@ func TestNewAPIModel(t *testing.T) {
 			},
 			want: &APIModel{
 				Code:    CodeOK,
-				Data:    EmptyMapData,
+				Data:    EmptyMapData(),
 				Message: "",
 			},
 		},
@@ -41,7 +41,7 @@ func TestNewAPIModel(t *testing.T) {
 			},
 			want: &APIModel{
 				Code:    CodeOK,
-				Data:    EmptyMapData,
+				Data:    EmptyMapData(),
 				Message: "asasa",
 			},
 		},
@@ -112,5 +112,23 @@ func TestError(t *testing.T) {
 	got := w.Body.String()
 	if got != want {
 		t.Errorf("Error() = %v, want %v", got, want)
+	}
+}
+
+func TestEmptyData(t *testing.T) {
+	m1 := EmptyMapData()
+	m1["1"] = "1"
+
+	m2 := EmptyMapData()
+	if m2["1"] != nil {
+		t.Errorf("Error() = %v, want %v", m2["1"], nil)
+	}
+
+	a1 := EmptyArrayData()
+	a1 = append(a1, "1")
+
+	a2 := EmptyArrayData()
+	if len(a2) != 0 {
+		t.Errorf("Error() = %v, want %v", len(a2), 0)
 	}
 }
