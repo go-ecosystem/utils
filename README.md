@@ -49,6 +49,8 @@ go get github.com/go-ecosystem/utils
   - GetIP
 - os
   - RunBashCommand
+  - RunCommand
+  - RunCommandWithStdin
 - response
   - UnknownError
   - DBConnectError
