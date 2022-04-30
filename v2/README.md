@@ -39,12 +39,24 @@ go get github.com/go-ecosystem/utils/v2
   - GetFiles
 - flag
   - IsTesting
+- http
+  - ClientIP
+- json
+  - ToString
+  - FromString
+  - ToMap
+  - Convert
 - log
   - E
   - W
   - H
   - I
   - V
+- middleware
+  - interceptor
+    - Recovery
+  - Cors
+  - Recovery
 - net
   - GetIP
 - os
@@ -67,6 +79,9 @@ go get github.com/go-ecosystem/utils/v2
   - IsCapitalize
   - SplitToChunks
   - Rand
+  - IsNumber
+  - RemoveEmpties
+  - Remove
 - version
   - Stringify
   - StringifyWithOps
