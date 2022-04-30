@@ -10,67 +10,9 @@
 ## Install
 
 ```shell
-go get github.com/go-ecosystem/utils
+go get github.com/go-ecosystem/utils/v2
 ```
-
-## Packages
-
-- array
-  - ContainString
-  - HasDuplicateItem
-- convert
-  - StringToBytes
-  - BytesToString
-  - JSONToMap
-  - MapToJSON
-- crypto
-  - EncryptPwd
-  - ComparePwd
-- file
-  - Exists
-  - Exist
-  - Mode
-  - WriteStringToFile
-  - AppendStringToFile
-  - GetDirList
-  - GetDirListWithFilter
-  - RecreateDir
-  - GetFilepaths
-  - GetFiles
-- flag
-  - IsTesting
-- log
-  - E
-  - W
-  - H
-  - I
-  - V
-- net
-  - GetIP
-- os
-  - RunBashCommand
-  - RunCommand
-  - RunCommandWithStdin
-- response
-  - UnknownError
-  - DBConnectError
-  - DBOperationError
-  - RequestParamError
-  - TokenInvalidError
-  - PermissionDeniedError
-  - JSON
-  - OK
-  - Err
-  - Abort
-- strings
-  - Capitalize
-  - IsCapitalize
-  - SplitToChunks
-  - Rand
-- version
-  - Stringify
-  - StringifyWithOps
 
 ## Usage
 
-see xxx_test.go file.
+See [v2 README](./v2/README.md)
