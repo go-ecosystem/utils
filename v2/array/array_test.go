@@ -1,6 +1,7 @@
 package array
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -110,5 +111,15 @@ func TestHasDuplicateItem(t *testing.T) {
 				t.Errorf("HasDuplicateItem() = %v, want %v", got, tt.want)
 			}
 		})
+	}
+}
+
+func TestRemoveDuplicateElements(t *testing.T) {
+	array := []string{"1", "2", "3", "3", "1", "4", "5"}
+
+	want := []string{"1", "2", "3", "4", "5"}
+
+	if got := RemoveDuplicateElements(array); !reflect.DeepEqual(got, want) {
+		t.Errorf("HasDuplicateItem() = %v, want %v", got, want)
 	}
 }

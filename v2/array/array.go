@@ -26,3 +26,16 @@ func HasDuplicateItem[V string | int64 | int32 | int | float64 | float32](values
 	var v V
 	return false, v
 }
+
+// RemoveDuplicateElements remove duplicate elements
+func RemoveDuplicateElements[T comparable](values []T) []T {
+	allKeys := make(map[T]bool)
+	list := []T{}
+	for _, item := range values {
+		if _, value := allKeys[item]; !value {
+			allKeys[item] = true
+			list = append(list, item)
+		}
+	}
+	return list
+}
