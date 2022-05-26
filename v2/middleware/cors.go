@@ -9,7 +9,7 @@ import (
 
 //Cors global CORS middleware
 func Cors(headers ...string) gin.HandlerFunc {
-	defaultHeaders := []string{"utoken", "lang", "Content-Type", "Accept", "Origin", "Access-Control-Allow-Origin", "Cache-Control"}
+	defaultHeaders := []string{"utoken", "token", "lang", "Content-Type", "Accept", "Origin", "Access-Control-Allow-Origin", "Cache-Control"}
 	for _, h := range headers {
 		defaultHeaders = append(defaultHeaders, h)
 	}
