@@ -7,9 +7,9 @@ type Code int
 
 // Error error
 type Error struct {
-	Code   Code
-	Msg    string
-	Detail string
+	Code   Code   `json:"code"`
+	Msg    string `json:"msg"`
+	Detail string `json:"detail"`
 }
 
 func (e Error) Error() string {
