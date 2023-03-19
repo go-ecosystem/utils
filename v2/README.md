@@ -19,6 +19,7 @@ go get github.com/go-ecosystem/utils/v2
   - Contains
   - HasDuplicateItem
   - RemoveDuplicateElements
+  - Map
 - convert
   - StringToBytes
   - BytesToString

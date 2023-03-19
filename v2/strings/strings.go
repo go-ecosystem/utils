@@ -3,8 +3,11 @@ package strings
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"regexp"
 	"strings"
 	"unicode"
+
+	"github.com/golang-jwt/jwt"
 )
 
 // Capitalize make first letter to upper
@@ -88,4 +91,29 @@ func RemoveEmpties(s string) string {
 // Remove remove all old from s
 func Remove(s, old string) string {
 	return strings.Replace(s, old, "", -1)
+}
+
+// ReplaceAllIgnoreCase replace all ignore case
+func ReplaceAllIgnoreCase(str, old, new string) string {
+	re := regexp.MustCompile(`(?i)` + old)
+	return re.ReplaceAllString(str, new)
+}
+
+// GenToken userID + rand key + jwt
+func GenToken(userID int64, keySize int) (string, error) {
+	randomKey, err := Rand(keySize)
+	if err != nil {
+		return "", err
+	}
+
+	jwtToken := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"id": userID,
+	})
+	var secretKey = []byte(randomKey)
+	token, err := jwtToken.SignedString(secretKey)
+	if err != nil {
+		return "", err
+	}
+
+	return token, err
 }

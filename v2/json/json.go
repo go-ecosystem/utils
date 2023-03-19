@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 )
 
-//ToString ToString
+// ToString ToString
 func ToString(data interface{}) (string, error) {
 	if data == nil {
 		return "", nil
@@ -16,7 +16,7 @@ func ToString(data interface{}) (string, error) {
 	return string(bytes), nil
 }
 
-//FromString FromString
+// FromString FromString
 func FromString(str string, data interface{}) error {
 	err := json.Unmarshal([]byte(str), &data)
 	if err != nil {
@@ -25,7 +25,7 @@ func FromString(str string, data interface{}) error {
 	return nil
 }
 
-//ToMap ToMap
+// ToMap ToMap
 func ToMap(data interface{}) (map[string]interface{}, error) {
 	bytes, err := json.Marshal(data)
 	if err != nil {
@@ -39,15 +39,11 @@ func ToMap(data interface{}) (map[string]interface{}, error) {
 	return mapObj, nil
 }
 
-//Convert Convert
-func Convert(s interface{}, d interface{}) error {
+// Convert Convert
+func Convert(s, d any) error {
 	bytes, err := json.Marshal(s)
 	if err != nil {
 		return err
 	}
-	err = json.Unmarshal(bytes, &d)
-	if err != nil {
-		return err
-	}
-	return nil
+	return json.Unmarshal(bytes, &d)
 }

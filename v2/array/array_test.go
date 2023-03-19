@@ -1,6 +1,7 @@
 package array
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -121,5 +122,35 @@ func TestRemoveDuplicateElements(t *testing.T) {
 
 	if got := RemoveDuplicateElements(array); !reflect.DeepEqual(got, want) {
 		t.Errorf("HasDuplicateItem() = %v, want %v", got, want)
+	}
+}
+
+func TestMap(t *testing.T) {
+	type args struct {
+		data []int
+		f    func(int) string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []string
+	}{
+		{
+			name: "123",
+			args: args{
+				data: []int{1, 2, 3},
+				f: func(i int) string {
+					return fmt.Sprintf("%d", i)
+				},
+			},
+			want: []string{"1", "2", "3"},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Map(tt.args.data, tt.args.f); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Map() = %v, want %v", got, tt.want)
+			}
+		})
 	}
 }

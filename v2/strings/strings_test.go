@@ -125,3 +125,18 @@ func TestRand(t *testing.T) {
 		t.Errorf("Rand() error %v", values)
 	}
 }
+
+func TestGenToken(t *testing.T) {
+	testCount := 100000
+	tokens := map[string]string{}
+	for i := 0; i < testCount; i++ {
+		got, err := GenToken(int64(i), 3)
+		if err != nil {
+			t.Error(err, got)
+		}
+		if v, exists := tokens[got]; exists {
+			t.Error(v)
+		}
+		tokens[got] = got
+	}
+}
