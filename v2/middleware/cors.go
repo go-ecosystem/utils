@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Cors global CORS middleware
+// Cors global CORS middleware
 func Cors(headers ...string) gin.HandlerFunc {
 	defaultHeaders := []string{"utoken", "token", "lang", "Content-Type", "Accept", "Origin", "Access-Control-Allow-Origin", "Cache-Control"}
 	for _, h := range headers {

@@ -28,7 +28,8 @@ func Exist(path string) (existed bool, isDir bool) {
 func Mode(path string) os.FileMode {
 	fileInfo, err := os.Stat(path)
 	if err != nil {
-		return 0755
+		const fileMode = 0755
+		return fileMode
 	}
 	return fileInfo.Mode()
 }
@@ -41,7 +42,8 @@ func WriteStringToFile(content, path string, mode os.FileMode) (err error) {
 
 // AppendStringToFile append string to file
 func AppendStringToFile(content string, filePath string) error {
-	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	const fileMode = 0644
+	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, fileMode)
 	if err != nil {
 		return err
 	}
@@ -65,11 +67,14 @@ func GetDirListWithFilter(path string, filter Filter) ([]string, error) {
 	var dirList []string
 
 	paths, err := filepath.Glob(filepath.Join(path, "*"))
+	if err != nil {
+		return dirList, err
+	}
 
 	for _, value := range paths {
-		f, err := os.Stat(value)
-		if err != nil {
-			return dirList, err
+		f, statErr := os.Stat(value)
+		if statErr != nil {
+			return dirList, statErr
 		}
 		if filter != nil && !filter(f) {
 			continue
