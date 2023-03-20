@@ -3,10 +3,12 @@ package strings
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"math"
 	"regexp"
 	"strings"
 	"unicode"
 
+	irand "github.com/go-ecosystem/utils/v2/rand"
 	"github.com/golang-jwt/jwt"
 )
 
@@ -108,6 +110,25 @@ func GenToken(userID int64, keySize int) (string, error) {
 
 	jwtToken := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"id": userID,
+	})
+	var secretKey = []byte(randomKey)
+	token, err := jwtToken.SignedString(secretKey)
+	if err != nil {
+		return "", err
+	}
+
+	return token, err
+}
+
+// GenToken rand id + rand key + jwt
+func GenRandToken(keySize int) (string, error) {
+	randomKey, err := Rand(keySize)
+	if err != nil {
+		return "", err
+	}
+
+	jwtToken := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"id": irand.RandFromZero(math.MaxInt),
 	})
 	var secretKey = []byte(randomKey)
 	token, err := jwtToken.SignedString(secretKey)
